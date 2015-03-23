@@ -9,8 +9,16 @@ public class UnitOfWork implements IUnitOfWork {
 
     private Map<Entity, IUnitOfWorkRepository> entities;
 
-    public UnitOfWork() {
+    private UnitOfWork() {
         this.entities = new LinkedHashMap<>();
+    }
+    
+    private static class LazyDBHolder {
+        private static final UnitOfWork INSTANCE = new UnitOfWork();
+    }
+ 
+    public static synchronized UnitOfWork getInstance() {
+        return LazyDBHolder.INSTANCE;
     }
 
     @Override

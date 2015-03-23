@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import luke.jaz.entity.User;
 import luke.jaz.entity.builder.IEntityBuilder;
-import luke.jaz.repository.Repository;
+import luke.jaz.entity.builder.UserBuilder;
+import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.unitofwork.IUnitOfWork;
 import luke.jaz.repository.unitofwork.IUnitOfWorkRepository;
+import luke.jaz.repository.unitofwork.UnitOfWork;
 import luke.jaz.util.PoolOfIds;
 
-public class DummyUserRepository extends Repository<User> implements IUnitOfWorkRepository<User> {
+public class DummyUserRepository implements IUserRepository, IUnitOfWorkRepository<User> {
     
     private final IEntityBuilder<User> builder;
     private final IUnitOfWork unitOfWork;
     private final DummyDB dummyDB;
     
-    public DummyUserRepository(DummyDB dummyDB, 
-            IEntityBuilder<User> builder, IUnitOfWork unitOfWork) {
-        this.dummyDB = dummyDB;
+    public DummyUserRepository(IEntityBuilder<User> builder) {
+        this.dummyDB = DummyDB.getInstance();
+        this.unitOfWork = UnitOfWork.getInstance();
         this.builder = builder;
-        this.unitOfWork = unitOfWork;
     }
     
     @Override
@@ -46,6 +47,26 @@ public class DummyUserRepository extends Repository<User> implements IUnitOfWork
         }
         return null;
     }
+    
+    @Override
+    public User get(String login, String pwd) {
+        for (User user : dummyDB.getUsersDB().values()) {
+            if(user.getName().equals(login) && user.getSource().equals(pwd)){
+                return builder.build(user);
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public boolean isUserNameFree(String login) {
+        for (User user : dummyDB.getUsersDB().values()) {
+            if(user.getName().equals(login)){
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public List<User> getAll() {
@@ -70,5 +91,5 @@ public class DummyUserRepository extends Repository<User> implements IUnitOfWork
     public void persistDelete(User entity) {
         dummyDB.getUsersDB().remove(entity.getId());
     }
-    
+
 }

@@ -66,4 +66,9 @@ public class User extends Entity {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "name=" + name + ", surname=" + surname + ", mail=" + mail + ", source=" + source + ", company=" + company + ", hobby=" + hobby + ", role=" + role + '}';
+    }
+
 }
