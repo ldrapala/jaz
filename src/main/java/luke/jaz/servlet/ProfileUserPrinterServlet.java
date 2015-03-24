@@ -24,7 +24,7 @@ public class ProfileUserPrinterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         this.builder = new UserBuilder();
-        this.repository = new DummyUserRepository(builder);
+//        this.repository = new DummyUserRepository(builder);
     }
 
     @Override

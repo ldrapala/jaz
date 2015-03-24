@@ -13,17 +13,21 @@ import luke.jaz.entity.builder.IEntityBuilder;
 import luke.jaz.entity.builder.UserBuilder;
 import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.dummy.DummyUserRepository;
+import luke.jaz.repository.unitofwork.IUnitOfWork;
+import luke.jaz.repository.unitofwork.UnitOfWork;
 
 @WebServlet("/AllUsersPrinterServlet")
 public class AllUsersPrinterServlet extends HttpServlet {
 
     private IEntityBuilder<User> builder;
+    private IUnitOfWork unitOfWork;
     private IUserRepository repository;
 
     @Override
     public void init() throws ServletException {
         this.builder = new UserBuilder();
-        this.repository = new DummyUserRepository(builder);
+        this.unitOfWork = UnitOfWork.getInstance();
+        this.repository = new DummyUserRepository(builder, unitOfWork);
     }
 
     @Override

@@ -6,6 +6,6 @@
         <title>JAVA 4 US!</title>
     </head>
     <body>
-        <h1>Server is overloaded!</h1>
+        <h1>You entered incorrect data. Please try again</h1>
     </body>
 </html>

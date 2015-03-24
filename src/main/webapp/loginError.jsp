@@ -6,6 +6,6 @@
         <title>JAVA 4 US!</title>
     </head>
     <body>
-        <h1>You have already registered!</h1>
+        <h1>Username or/and password are incorrect</h1>
     </body>
 </html>

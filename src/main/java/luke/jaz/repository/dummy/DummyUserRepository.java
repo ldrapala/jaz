@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import luke.jaz.entity.User;
 import luke.jaz.entity.builder.IEntityBuilder;
-import luke.jaz.entity.builder.UserBuilder;
 import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.unitofwork.IUnitOfWork;
 import luke.jaz.repository.unitofwork.IUnitOfWorkRepository;
-import luke.jaz.repository.unitofwork.UnitOfWork;
 import luke.jaz.util.PoolOfIds;
 
 public class DummyUserRepository implements IUserRepository, IUnitOfWorkRepository<User> {
@@ -17,9 +15,9 @@ public class DummyUserRepository implements IUserRepository, IUnitOfWorkReposito
     private final IUnitOfWork unitOfWork;
     private final DummyDB dummyDB;
     
-    public DummyUserRepository(IEntityBuilder<User> builder) {
+    public DummyUserRepository(IEntityBuilder<User> builder, IUnitOfWork unitOfWork) {
         this.dummyDB = DummyDB.getInstance();
-        this.unitOfWork = UnitOfWork.getInstance();
+        this.unitOfWork = unitOfWork;
         this.builder = builder;
     }
     
@@ -50,8 +48,10 @@ public class DummyUserRepository implements IUserRepository, IUnitOfWorkReposito
     
     @Override
     public User get(String login, String pwd) {
+        System.out.println("Get from DB: "+login+", "+pwd);
         for (User user : dummyDB.getUsersDB().values()) {
-            if(user.getName().equals(login) && user.getSource().equals(pwd)){
+            System.out.println(user);
+            if(user.getName().equals(login) && user.getPassword().equals(pwd)){
                 return builder.build(user);
             }
         }
@@ -79,6 +79,7 @@ public class DummyUserRepository implements IUserRepository, IUnitOfWorkReposito
     
     @Override
     public void persistAdd(User entity) {
+        System.out.println("Add user to DB: "+entity);
         dummyDB.getUsersDB().put(PoolOfIds.generateId(), entity);
     }
 
