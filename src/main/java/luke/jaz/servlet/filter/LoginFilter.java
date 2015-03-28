@@ -12,9 +12,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import luke.jaz.entity.User;
-import luke.jaz.servlet.parameter.UserParameter;
+import luke.jaz.parameter.servlet.UserParameter;
 
-@WebFilter("/login.jsp")
+@WebFilter("/functions/login.jsp")
 public class LoginFilter implements Filter {
 
     @Override

@@ -1,4 +1,4 @@
-package luke.jaz.servlet.parameter;
+package luke.jaz.parameter.servlet;
 
 public interface UserParameter {
     

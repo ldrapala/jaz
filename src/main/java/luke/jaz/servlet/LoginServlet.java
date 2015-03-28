@@ -11,11 +11,12 @@ import javax.servlet.http.HttpSession;
 import luke.jaz.entity.User;
 import luke.jaz.entity.builder.IEntityBuilder;
 import luke.jaz.entity.builder.UserBuilder;
+import luke.jaz.parameter.context.ContextParameter;
 import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.dummy.DummyUserRepository;
 import luke.jaz.repository.unitofwork.IUnitOfWork;
 import luke.jaz.repository.unitofwork.UnitOfWork;
-import luke.jaz.servlet.parameter.UserParameter;
+import luke.jaz.parameter.servlet.UserParameter;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -40,10 +41,13 @@ public class LoginServlet extends HttpServlet {
         User user = repository.get(login, pwd);
         if (user != null) {
             session.setAttribute(UserParameter.USER, user);
+            Integer onlineUserNumber = (Integer) req.getServletContext().getAttribute(ContextParameter.ONLINE_USERS);
+            onlineUserNumber = onlineUserNumber != null ? onlineUserNumber : 0;
+            req.getServletContext().setAttribute(ContextParameter.ONLINE_USERS, onlineUserNumber);
             RequestDispatcher rd = req.getRequestDispatcher("/ProfileUserPrinterServlet");
             rd.include(req, resp);
         } else {
-            resp.sendRedirect("./loginError.jsp");
+            resp.sendRedirect("./errors/loginError.jsp");
         }
     }
 

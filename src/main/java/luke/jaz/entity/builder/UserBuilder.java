@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import luke.jaz.entity.EntityState;
 import luke.jaz.entity.Role;
 import luke.jaz.entity.User;
-import luke.jaz.servlet.parameter.UserParameter;
+import luke.jaz.parameter.servlet.UserParameter;
 
 public class UserBuilder implements IEntityBuilder<User> {
     

@@ -13,7 +13,7 @@ import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.dummy.DummyUserRepository;
 import luke.jaz.repository.unitofwork.IUnitOfWork;
 import luke.jaz.repository.unitofwork.UnitOfWork;
-import luke.jaz.servlet.parameter.UserParameter;
+import luke.jaz.parameter.servlet.UserParameter;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
@@ -41,7 +41,7 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("./login.jsp");
         } else {
             System.out.println("Data not valid");
-            resp.sendRedirect("./registrationError.jsp");
+            resp.sendRedirect("./errors/registrationError.jsp");
         }
     }
 

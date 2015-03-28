@@ -9,22 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import luke.jaz.entity.User;
-import luke.jaz.entity.builder.IEntityBuilder;
-import luke.jaz.entity.builder.UserBuilder;
-import luke.jaz.repository.IUserRepository;
-import luke.jaz.repository.dummy.DummyUserRepository;
-import luke.jaz.servlet.parameter.UserParameter;
+import luke.jaz.parameter.servlet.UserParameter;
 
-@WebServlet("/ProfileUserPrinterServlet")
-public class ProfileUserPrinterServlet extends HttpServlet {
+@WebServlet("/UserDataServlet")
+public class UserDataServlet extends HttpServlet {
     
-    private IEntityBuilder<User> builder;
-    private IUserRepository repository;
-
     @Override
     public void init() throws ServletException {
-        this.builder = new UserBuilder();
-//        this.repository = new DummyUserRepository(builder);
     }
 
     @Override
