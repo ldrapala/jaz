@@ -8,9 +8,19 @@
     <body>
         <form action="RegistrationServlet" method="get">
             Imiê : <input type="text" name="name"  /><br />
+            Nazwisko : <input type="text" name="surname"  /><br />
             Has³o : <input type="text" name="password"  /><br />
             PotwierdŸ has³o : <input type="text" name="confirmPassword"  /><br />
             E-mail : <input type="text" name="mail"  /><br />
+            PotwierdŸ e-mail : <input type="text" name="confirmMail"  /><br />
+            Gdzie pracujesz : <input type="text" name="company"  /><br />
+            Sk¹d dowiedzia³eœ siê o konferencji?<br>
+            <input type="radio" name="source"  value="anoucementFromWork" checked />Og³oszenie w pracy <br>
+            <input type="radio" name="source"  value="anoucementFromSchool" />Og³oszenie na uczelni <br>
+            <input type="radio" name="source"  value="facebook" />Facebook <br>
+            <input type="radio" name="source"  value="friends" />Znajomi <br>
+            <input type="radio" name="source"  value="other" />Inne (jakie?) <br>
+            Hobby : <input type="text" name="hobby"  /><br />
             <input type="submit" value=" OK ">
         </form>
     </body>

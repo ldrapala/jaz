@@ -1,4 +1,4 @@
-package luke.jaz.servlet;
+package luke.jaz.servlet.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
