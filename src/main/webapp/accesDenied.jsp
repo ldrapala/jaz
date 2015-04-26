@@ -5,10 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JAVA 4 US!</title>
     </head>
-     <body>
-        <form action="LoginServlet" method="get">
-            User : <input type="text" name="name"  /><br />
-            <input type="submit" value=" OK ">
-        </form>
+    <body>
+        <h1>Access denied</h1>
     </body>
 </html>

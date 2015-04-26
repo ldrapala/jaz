@@ -1,5 +1,8 @@
 package luke.jaz.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User extends Entity {
 
     private String name;
@@ -10,6 +13,11 @@ public class User extends Entity {
     private String employer;
     private String source;
     private String hobby;
+    private List<Address> addresses;
+
+    public User() {
+        this.addresses = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -73,6 +81,10 @@ public class User extends Entity {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
     @Override

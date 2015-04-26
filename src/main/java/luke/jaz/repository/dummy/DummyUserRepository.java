@@ -93,4 +93,15 @@ public class DummyUserRepository implements IUserRepository, IUnitOfWorkReposito
         dummyDB.getUsersDB().remove(entity.getId());
     }
 
+    @Override
+    public User get(String login) {
+        System.out.println("Get from DB: "+login);
+        for (User user : dummyDB.getUsersDB().values()) {
+            if(user.getName().equals(login)){
+                return builder.build(user);
+            }
+        }
+        return null;
+    }
+
 }

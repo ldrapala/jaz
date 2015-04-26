@@ -7,20 +7,12 @@ import luke.jaz.entity.EntityState;
 
 public class UnitOfWork implements IUnitOfWork {
 
-    private Map<Entity, IUnitOfWorkRepository> entities;
+    private final Map<Entity, IUnitOfWorkRepository> entities;
 
-    private UnitOfWork() {
+    public UnitOfWork() {
         this.entities = new LinkedHashMap<>();
     }
     
-    private static class LazyDBHolder {
-        private static final UnitOfWork INSTANCE = new UnitOfWork();
-    }
- 
-    public static synchronized UnitOfWork getInstance() {
-        return LazyDBHolder.INSTANCE;
-    }
-
     @Override
     public void commit() {
         for (Entity entity : entities.keySet()) {
@@ -40,6 +32,7 @@ public class UnitOfWork implements IUnitOfWork {
                     break;
             }
         }
+        entities.clear();
     }
 
     @Override

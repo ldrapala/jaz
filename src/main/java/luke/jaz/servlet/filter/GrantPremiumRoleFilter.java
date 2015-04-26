@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import luke.jaz.entity.Role;
 import luke.jaz.entity.User;
+import luke.jaz.jsp.JspName;
+import luke.jaz.jsp.JspUrlBuilder;
 import luke.jaz.parameter.servlet.UserParameter;
 
-@WebFilter("/functions/grantRole.jsp")
+@WebFilter(JspName.GRANT_ROLE_JSP)
 public class GrantPremiumRoleFilter implements Filter {
     
     @Override
@@ -27,12 +29,12 @@ public class GrantPremiumRoleFilter implements Filter {
     System.out.println("Do premium filter");
         HttpSession session = ((HttpServletRequest) request).getSession();
         User user = (User) session.getAttribute(UserParameter.USER);
-        if (user != null && Role.ADMIN == user.getRole()) {
+        if (user != null){ //&& Role.ADMIN == user.getRole()) {
             System.out.println("User admin login");
             chain.doFilter(request, response);
         } else {
             System.out.println("User has not admin role or not login");
-            ((HttpServletResponse) response).sendRedirect("./errors/accesDenied.jsp");
+            ((HttpServletResponse) response).sendRedirect(JspUrlBuilder.build(JspName.ACCESS_DENIED_JSP));
         }
     }
 

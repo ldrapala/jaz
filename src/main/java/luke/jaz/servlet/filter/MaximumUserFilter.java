@@ -11,9 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import luke.jaz.jsp.JspName;
+import luke.jaz.jsp.JspUrlBuilder;
 import luke.jaz.parameter.context.ContextParameter;
 
-@WebFilter("/functions/*")
+@WebFilter("/*")
 public class MaximumUserFilter implements Filter {
 
     private static final int MAX_USERS_ONLINE = 5;
@@ -31,7 +33,7 @@ public class MaximumUserFilter implements Filter {
         System.out.println("Users online: "+onlineUserNumber);
         if (isServerOverloaded(onlineUserNumber)) {
             System.out.println("Server overloaded");
-            ((HttpServletResponse)response).sendRedirect("./serverOverloaded.jsp");
+            ((HttpServletResponse)response).sendRedirect(JspUrlBuilder.build(JspName.SERVER_OVERLOADED_JSP));
             return;
         }
         chain.doFilter(request, response);

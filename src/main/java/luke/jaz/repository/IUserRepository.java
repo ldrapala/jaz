@@ -8,4 +8,6 @@ public interface IUserRepository extends IRepository<User> {
     
     boolean isUserNameFree(String login);
     
+    User get(String login);
+    
 }

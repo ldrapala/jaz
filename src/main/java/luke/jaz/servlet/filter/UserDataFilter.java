@@ -1,7 +1,6 @@
 package luke.jaz.servlet.filter;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import luke.jaz.entity.User;
+import luke.jaz.jsp.JspName;
+import luke.jaz.jsp.JspUrlBuilder;
 import luke.jaz.parameter.servlet.UserParameter;
 
-@WebFilter("/functions/userData.jsp")
+@WebFilter(JspName.USER_DATA_JSP)
 public class UserDataFilter implements Filter {
 
     @Override
@@ -32,9 +33,8 @@ public class UserDataFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             System.out.println("User has not login yet");
-            ((HttpServletResponse)response).sendRedirect("./errors/accesDenied.jsp");
-            PrintWriter writer = response.getWriter();
-            writer.print(user);
+            ((HttpServletResponse)response).sendRedirect(JspUrlBuilder.build(JspName.ACCESS_DENIED_JSP));
+            response.getWriter().print(user);
         }
     }
 

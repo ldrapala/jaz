@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import luke.jaz.entity.Role;
 import luke.jaz.entity.User;
+import luke.jaz.jsp.JspName;
+import luke.jaz.jsp.JspUrlBuilder;
 import luke.jaz.parameter.servlet.UserParameter;
 
-@WebFilter("/functions/premium.jsp")
+@WebFilter(JspName.PREMIUM_JSP)
 public class PremiumRoleFilter implements Filter {
 
     @Override
@@ -32,7 +34,7 @@ public class PremiumRoleFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             System.out.println("User has not premium role or not login");
-            ((HttpServletResponse) response).sendRedirect("./errors/accesDenied.jsp");
+            ((HttpServletResponse) response).sendRedirect(JspUrlBuilder.build(JspName.ACCESS_DENIED_JSP));
         }
     }
 

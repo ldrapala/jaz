@@ -11,5 +11,6 @@ public interface UserParameter {
     public static final String EMPLOYER = "employer";
     public static final String SOURCE = "source";
     public static final String HOBBY = "hobby";
+    public static final String ROLE = "role";
     
 }
