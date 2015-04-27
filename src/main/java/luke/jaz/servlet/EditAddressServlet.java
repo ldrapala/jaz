@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import luke.jaz.entity.Address;
-import luke.jaz.entity.EntityState;
 import luke.jaz.entity.builder.AddressBuilder;
 import luke.jaz.entity.builder.IEntityBuilder;
+import luke.jaz.jsp.JspName;
+import luke.jaz.jsp.JspUrlBuilder;
 import luke.jaz.parameter.context.ContextParameter;
 import luke.jaz.parameter.servlet.EntityParametr;
 import luke.jaz.repository.IAddressRepository;
@@ -33,6 +34,7 @@ public class EditAddressServlet extends HttpServlet {
         address.setId(id);
         this.repository.update(address);
         this.unitOfWork.commit();
+        resp.sendRedirect(JspUrlBuilder.build(JspName.SHOW_ALL_USER_ADDRESSES_JSP));
     }
     
     private void initVariablesFromContext(HttpServletRequest req) {

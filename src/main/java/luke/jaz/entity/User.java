@@ -86,6 +86,10 @@ public class User extends Entity {
     public void addAddress(int id){
         this.addresses.add(id);
     }
+    
+    public void removeAddress(int id){
+        this.addresses.remove(id);
+    }
 
     public List<Integer> getAddresses() {
         return addresses;
