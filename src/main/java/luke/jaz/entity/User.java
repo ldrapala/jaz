@@ -13,7 +13,7 @@ public class User extends Entity {
     private String employer;
     private String source;
     private String hobby;
-    private List<Address> addresses;
+    private List<Integer> addresses;
 
     public User() {
         this.addresses = new ArrayList<>();
@@ -82,8 +82,12 @@ public class User extends Entity {
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
+    
+    public void addAddress(int id){
+        this.addresses.add(id);
+    }
 
-    public List<Address> getAddresses() {
+    public List<Integer> getAddresses() {
         return addresses;
     }
 

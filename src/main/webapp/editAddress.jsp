@@ -6,7 +6,7 @@
         <title>JAVA 4 US!</title>
     </head>
     <body>
-        <form action="AddAddressServlet" method="get">
+        <form action="EditAddressServlet" method="get">
             <select name="addressType">
                 <option value="HOME">Domowy</option>
                 <option value="POST">Korespondencyjny</option>

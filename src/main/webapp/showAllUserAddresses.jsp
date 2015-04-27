@@ -1,3 +1,5 @@
+<%@page import="luke.jaz.parameter.context.ContextParameter"%>
+<%@page import="luke.jaz.repository.IAddressRepository"%>
 <%@page import="luke.jaz.entity.Address"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="luke.jaz.entity.User"%>
@@ -13,13 +15,14 @@
     <body>
         <%
             User user = (User) request.getAttribute(UserParameter.USER);
-            PrintWriter writer = response.getWriter();
-            for (Address a : user.getAddresses()) {
-                writer.print(a);
-        %>
-        <a href="./login.jsp?id=<%= a.getId() %>">EDYTUJ</a>
-        <%
+            IAddressRepository repository = (IAddressRepository) request.getServletContext().getAttribute(ContextParameter.ADDRESS_REPOSITORY);
+            for (Integer id : user.getAddresses()) {
+                Address address = repository.get(id);
+                out.print(address);
+                out.println("<a href=\"./editAddress.jsp?id=" + address.getId() + "\">Edytuj</a>");
+                out.println("<a href=\"./RemoveAddressServlet?id=" + address.getId() + "\">Usuń</a>");
             }
         %>
+        <a href="./addAddress.jsp">Dodaj</a>
     </body>
 </html>

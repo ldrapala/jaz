@@ -80,7 +80,7 @@ public class DummyUserRepository implements IUserRepository, IUnitOfWorkReposito
     @Override
     public void persistAdd(User entity) {
         System.out.println("Add user to DB: "+entity);
-        dummyDB.getUsersDB().put(PoolOfIds.generateId(), entity);
+        dummyDB.getUsersDB().put(entity.getId(), entity);
     }
 
     @Override
