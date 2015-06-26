@@ -6,7 +6,7 @@ import luke.jaz.entity.AddressType;
 import luke.jaz.entity.EntityState;
 import luke.jaz.entity.Province;
 import luke.jaz.parameter.servlet.AddressParameter;
-import luke.jaz.util.PoolOfIds;
+import luke.jaz.util.AddressPoolOfIds;
 
 public class AddressBuilder implements IEntityBuilder<Address> {
 
@@ -21,7 +21,7 @@ public class AddressBuilder implements IEntityBuilder<Address> {
         Province province = Enum.valueOf(Province.class, provinceString);
         String street = request.getParameter(AddressParameter.STREET);
         return createAddress(addressType, city, nrOfApartment, postCode, province, 
-                street, PoolOfIds.generateId(), EntityState.NEW);
+                street, AddressPoolOfIds.generateId(), EntityState.NEW);
     }
     
     @Override

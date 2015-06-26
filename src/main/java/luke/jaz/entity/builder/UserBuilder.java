@@ -5,7 +5,7 @@ import luke.jaz.entity.EntityState;
 import luke.jaz.entity.Role;
 import luke.jaz.entity.User;
 import luke.jaz.parameter.servlet.UserParameter;
-import luke.jaz.util.PoolOfIds;
+import luke.jaz.util.UserPoolOfIds;
 
 public class UserBuilder implements IEntityBuilder<User> {
     
@@ -19,7 +19,7 @@ public class UserBuilder implements IEntityBuilder<User> {
         String password = request.getParameter(UserParameter.PASSWORD);
         String mail = request.getParameter(UserParameter.MAIL);
         return createUser(name, password, surname, employer, source, hobby, 
-                mail, PoolOfIds.generateId(), EntityState.NEW, Role.USUAL);
+                mail, UserPoolOfIds.generateId(), EntityState.NEW, Role.ADMIN);
     }
     
     @Override

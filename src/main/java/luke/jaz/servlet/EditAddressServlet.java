@@ -28,7 +28,7 @@ public class EditAddressServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("DoGet edit address servlet");
         initVariablesFromContext(req);
-        String idString = (String) req.getAttribute(EntityParametr.ID);
+        String idString = (String) req.getParameter(EntityParametr.ID);
         int id = Integer.parseInt(idString);
         Address address = this.builder.build(req);
         address.setId(id);

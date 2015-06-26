@@ -29,7 +29,7 @@ public class RemoveAddressServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("DoGet remove address servlet");
         initVariablesFromContext(req);
-        String idString = (String) req.getAttribute(EntityParametr.ID);
+        String idString = (String) req.getParameter(EntityParametr.ID);
         int id = Integer.parseInt(idString);
         Address address = this.addressRepository.get(id);
         this.addressRepository.delete(address);

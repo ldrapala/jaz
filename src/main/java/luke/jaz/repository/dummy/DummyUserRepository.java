@@ -7,7 +7,6 @@ import luke.jaz.entity.builder.IEntityBuilder;
 import luke.jaz.repository.IUserRepository;
 import luke.jaz.repository.unitofwork.IUnitOfWork;
 import luke.jaz.repository.unitofwork.IUnitOfWorkRepository;
-import luke.jaz.util.PoolOfIds;
 
 public class DummyUserRepository implements IUserRepository, IUnitOfWorkRepository<User> {
     

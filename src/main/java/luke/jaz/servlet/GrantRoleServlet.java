@@ -29,7 +29,7 @@ public class GrantRoleServlet extends HttpServlet {
             user.setRole(Enum.valueOf(Role.class, roleName));
             IUnitOfWork unitOfWork
                     = (IUnitOfWork) req.getServletContext().getAttribute(ContextParameter.UNIT_OF_WORK);
-            repository.save(user);
+            repository.update(user);
             unitOfWork.commit();
         }
     }

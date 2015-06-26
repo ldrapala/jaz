@@ -14,13 +14,16 @@
     </head>
     <body>
         <%
-            User user = (User) request.getAttribute(UserParameter.USER);
-            IAddressRepository repository = (IAddressRepository) request.getServletContext().getAttribute(ContextParameter.ADDRESS_REPOSITORY);
+            User user = (User) session.getAttribute(UserParameter.USER);
+            IAddressRepository repository = (IAddressRepository) session.getServletContext().getAttribute(ContextParameter.ADDRESS_REPOSITORY);
             for (Integer id : user.getAddresses()) {
                 Address address = repository.get(id);
-                out.print(address);
-                out.println("<a href=\"./editAddress.jsp?id=" + address.getId() + "\">Edytuj</a>");
-                out.println("<a href=\"./RemoveAddressServlet?id=" + address.getId() + "\">Usuń</a>");
+                if (address != null) {
+                    out.print(address);
+                    out.println("<a href=\"./editAddress.jsp?id=" + address.getId() + "\">Edytuj</a>");
+                    out.println("<a href=\"./RemoveAddressServlet?id=" + address.getId() + "\">Usuń</a>");
+                    out.println("<br>");
+                }
             }
         %>
         <a href="./addAddress.jsp">Dodaj</a>
